@@ -10,8 +10,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   const formData = z.object({
-    loginID: z.string().min(3),
-    password: z.string().min(3),
+    loginID: z.string("Please enter").min(3, "min 3 char require"),
+    password: z
+      .string("Please dont enter")
+      .min(8, "Password must contain at least 8 characters"),
   });
   type formSchema = z.infer<typeof formData>;
   const {
@@ -35,7 +37,7 @@ const Login = () => {
         }
         await setCurrentUser(userData);
 
-        navigate(userData.userType);
+        navigate(`/${userData.userType}`);
       }
     } catch (error) {
       if (error?.message) {
@@ -66,7 +68,7 @@ const Login = () => {
       </form>
       <hr />
       <h3>Dont have login</h3>
-      <Link to="signup">Sign up</Link>
+      <Link to="/signup">Sign up</Link>
     </>
   );
 };

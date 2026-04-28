@@ -10,9 +10,6 @@ const ProtectedRoute = () => {
     console.log("You are not authorised user");
     return <Navigate to="/" replace />;
   }
-  if (currentUser?.userType) {
-    return <Navigate to={`${currentUser?.userType}`} />;
-  }
 
   return <Outlet />;
 };

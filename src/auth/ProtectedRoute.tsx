@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useLocal from "../hooks/useLocal";
 
 const ProtectedRoute = ({ children }) => {
@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (!currentUser) {
     console.log("You are not authorised user");
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;

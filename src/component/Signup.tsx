@@ -13,7 +13,7 @@ const Signup = () => {
     loginID: z.string("Please enter").min(3, "min 3 char require"),
     password: z
       .string("Please dont enter")
-      .min(8, "not meeting the password Standard"),
+      .min(8, "Password must contain at least 8 characters"),
     userType: z.enum(userTypeList),
   });
   type formSchema = z.infer<typeof formData>;
@@ -31,7 +31,7 @@ const Signup = () => {
       console.log(data, newData);
       await setAllUsers(newData);
       // alert("Sign up successfully go to login");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }
@@ -67,7 +67,7 @@ const Signup = () => {
       </form>
       <hr />
       <h3>Ohh have a Login</h3>
-      <Link to="/">Login</Link>
+      <Link to="/login">Login</Link>
     </>
   );
 };

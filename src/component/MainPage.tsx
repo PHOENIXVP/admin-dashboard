@@ -8,7 +8,7 @@ const MainPage = () => {
   const onSubmit = async () => {
     try {
       await setCurrentUser(null);
-      navigate("/");
+      navigate("/login", { replace: true });
     } catch (error) {
       if (error?.message) {
         alert(error.message);

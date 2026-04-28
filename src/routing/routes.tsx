@@ -8,22 +8,22 @@ import Signup from "../component/Signup";
 
 export const routes = [
   {
-    path: "/",
+    // path: "/",
+    // children: [
+    //   {
+    element: (
+      <ProtectedRoute>
+        <MainPage />
+      </ProtectedRoute>
+    ),
     children: [
-      { index: true, element: <Login /> },
-      {
-        element: (
-          <ProtectedRoute>
-            <MainPage />
-          </ProtectedRoute>
-        ),
-        children: [
-          { path: "admin", element: <Admin /> },
-          { path: "employee", element: <Employee /> },
-          { path: "dashboard", element: <Dashboard /> },
-        ],
-      },
+      { path: "admin", element: <Admin /> },
+      { path: "employee", element: <Employee /> },
+      { path: "other", element: <Dashboard /> },
     ],
+    //   },
+    // ],
   },
+  { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
 ];
