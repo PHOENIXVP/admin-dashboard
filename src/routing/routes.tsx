@@ -1,8 +1,29 @@
+import ProtectedRoute from "../auth/ProtectedRoute";
+import Admin from "../component/Admin";
+import Dashboard from "../component/Dashboard";
+import Employee from "../component/Employee";
+import Login from "../component/Login";
+import MainPage from "../component/MainPage";
+import Signup from "../component/Signup";
+
 export const routes = [
   {
     path: "/",
-    element: "login",
-    children: [{ index: true, element: "deside where to redirect" }],
+    children: [
+      { index: true, element: <Login /> },
+      {
+        element: (
+          <ProtectedRoute>
+            <MainPage />
+          </ProtectedRoute>
+        ),
+        children: [
+          { path: "admin", element: <Admin /> },
+          { path: "employee", element: <Employee /> },
+          { path: "dashboard", element: <Dashboard /> },
+        ],
+      },
+    ],
   },
-  { path: "/signup", element: "signup" },
+  { path: "/signup", element: <Signup /> },
 ];
