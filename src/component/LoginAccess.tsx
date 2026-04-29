@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "./api";
+import API from "../utils/api";
 
 function LoginAccess({ onLogin }) {
   const [username, setUsername] = useState("");
