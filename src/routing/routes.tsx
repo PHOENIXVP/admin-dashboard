@@ -5,6 +5,7 @@ import Dashboard from "../component/Dashboard";
 import Employee from "../component/Employee";
 import Login from "../component/Login";
 import MainPage from "../component/MainPage";
+import Profile from "../component/Profile";
 import Signup from "../component/Signup";
 
 export const routes = [
@@ -31,6 +32,7 @@ export const routes = [
         },
       },
       { path: "dashboard", element: <Dashboard /> },
+      { path: "profile", element: <Profile /> },
     ],
   },
   {
