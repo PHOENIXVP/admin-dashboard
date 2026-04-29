@@ -18,19 +18,17 @@ export const routes = [
     children: [
       {
         path: "admin",
-        element: (
-          <ProtectedRoute allowedRole={["admin"]}>
-            <Admin />
-          </ProtectedRoute>
-        ),
+        element: <Admin />,
+        handle: {
+          roles: ["admin"],
+        },
       },
       {
         path: "employee",
-        element: (
-          <ProtectedRoute allowedRole={["admin,employee"]}>
-            <Employee />
-          </ProtectedRoute>
-        ),
+        element: <Employee />,
+        handle: {
+          roles: ["admin", "employee"],
+        },
       },
       { path: "dashboard", element: <Dashboard /> },
     ],
