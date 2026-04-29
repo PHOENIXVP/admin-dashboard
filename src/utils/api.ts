@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000", // Your backend URL
-  withCredentials: true, // Important to send cookies
+  baseURL: "http://localhost:5000",
+  withCredentials: true,
 });
 
-// Function to get a new access token
 const refreshToken = async () => {
   try {
     const response = await API.post("/refresh");
@@ -16,25 +15,21 @@ const refreshToken = async () => {
   }
 };
 
-// Axios request interceptor to attach access token
 API.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      config.headers["Authorization"] = `Bearer ${accessToken}`;
-    }
+        config.headers["Authorization"] = `Bearer ${accessToken}`;
+    } 
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// Axios response interceptor to handle 401 errors
 API.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-
-    // If 401 error and not retrying yet
     if (
       error.response &&
       error.response.status === 401 &&
@@ -45,13 +40,11 @@ API.interceptors.response.use(
         const newAccessToken = await refreshToken();
         localStorage.setItem("accessToken", newAccessToken);
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-        return API(originalRequest); // Retry the request
+        return API(originalRequest);
       } catch (err) {
-        console.error("Token refresh failed", err);
         return Promise.reject(err);
       }
     }
-
     return Promise.reject(error);
   }
 );

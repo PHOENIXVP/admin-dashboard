@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/api";
+import LoginAccess from "./LoginAccess";
 
 
 function Profile() {
@@ -23,6 +24,7 @@ function Profile() {
   return (
     <div>
       <h1>Profile</h1>
+      <LoginAccess />
       {error && <p style={{ color: "red" }}>{error}</p>}
       {profile ? (
         <div>
