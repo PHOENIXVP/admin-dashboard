@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Link, useNavigate } from "react-router-dom";
-import API from "../utils/api";
+import { publicAPI } from "../utils/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Login = () => {
   });
   const onSubmit = async (data: formSchema) => {
     try {
-      const resp = await API.post("/auth/login", {
+      const resp = await publicAPI.post("/auth/login", {
         username: data.loginID,
         password: data.password,
       });

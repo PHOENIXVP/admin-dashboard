@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { loginWithGoogle, loginWithGithub, logoutUser } from "../auth";
-import api from "../api";
+import api from "../utils/api";
 
 function FirebaseLogin() {
   const [user, setUser] = useState(null);

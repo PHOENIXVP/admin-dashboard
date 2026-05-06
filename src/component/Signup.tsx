@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Link, useNavigate } from "react-router-dom";
-import API from "../utils/api";
+import { publicAPI } from "../utils/api";
 
 // const userTypeList = ["admin", "employee", "other"];
 
@@ -28,7 +28,7 @@ const Signup = () => {
   });
   const onSubmit = async (data: formSchema) => {
     try {
-      const resp = await API.post("/auth/register", {
+      const resp = await publicAPI.post("/auth/register", {
         username: data.loginID,
         password: data.password,
         userType: data.userType,

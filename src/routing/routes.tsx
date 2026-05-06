@@ -3,6 +3,7 @@ import UnProtectedRoute from "../auth/UnProtectedRoute";
 import FirebaseLogin from "../auth/FirebaseLogin";
 import Admin from "../component/Admin";
 import Dashboard from "../component/Dashboard";
+import ProfileData from "../component/ProfileData";
 import Employee from "../component/Employee";
 import Login from "../component/Login";
 import MainPage from "../component/MainPage";
@@ -33,6 +34,10 @@ export const routes = [
         },
       },
       { path: "dashboard", element: <Dashboard /> },
+      { path: "profileData", element: <ProfileData /> },
+      
+      { path: "asach", element: "asach" },
+      { path: "asach-kahitari", element: "asach-khitari" },
       { path: "profile", element: <Profile /> },
     ],
   },

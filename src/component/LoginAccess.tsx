@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import API from "../utils/api";
+import { useState } from "react";
+import api from "../utils/api";
 
 function LoginAccess({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -9,7 +9,7 @@ function LoginAccess({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await API.post("/login", { username, password });
+      const response = await api.post("/login", { username, password });
       localStorage.setItem("accessToken", response.data.accessToken);
       onLogin(); // notify parent
     } catch (err) {

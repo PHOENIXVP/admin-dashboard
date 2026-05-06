@@ -1,20 +1,12 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import API from "../utils/api";
-import { useEffect, useState } from "react";
+import { Outlet, useNavigate, Link } from "react-router-dom";
+import { publicAPI } from "../utils/api";
 
 const MainPage = () => {
-  const [profile, setProfile] = useState();
   const navigate = useNavigate();
 
   const onSubmit = async () => {
     try {
-      const resp = await API.post(
-        "/auth/logout",
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+      const resp = await publicAPI.post("/auth/logout");
       await localStorage.removeItem("userType");
       await localStorage.removeItem("accessToken");
       if (resp?.data?.message) {
@@ -30,24 +22,17 @@ const MainPage = () => {
     }
   };
 
-  useEffect(() => {
-    const getProfile = async () => {
-      const resp = await API.get("/api/profile");
-      if (resp?.data) {
-        setProfile(resp?.data);
-      }
-    };
-    getProfile();
-  }, []);
-
   return (
     <>
       <div className="container flex align-items-center justify-content-between p-3">
         <h1 className="my-2">Management site</h1>
+
+        <Link to="/profileData">Profile-Data</Link>
+        <Link to="/asach-kahitari">asach-kahitari</Link>
+        <Link to="/asach">asach</Link>
         <button onClick={onSubmit}>Log out</button>
       </div>
       <hr />
-      {profile && JSON.stringify(profile)}
       <Outlet />
     </>
   );

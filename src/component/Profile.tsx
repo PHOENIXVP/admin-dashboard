@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import API from "../utils/api";
+import { useState, useEffect } from "react";
 import LoginAccess from "./LoginAccess";
-
+import api from "../utils/api";
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -10,7 +9,7 @@ function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await API.get("/profile");
+        const response = await api.get("/profile");
         setProfile(response.data);
       } catch (err) {
         setError("Failed to load profile");
